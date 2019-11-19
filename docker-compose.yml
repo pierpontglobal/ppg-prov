@@ -1,0 +1,32 @@
+version: '3.7'
+services:
+  db:
+    networks:
+      - internal
+    image: "postgres:11"
+    environment:
+      POSTGRES_USERNAME: 'postgres'
+      POSTGRES_PASSWORD: 'qusUt1i9obru4ISTUG2f'
+    ports:
+      - "5432:5432"
+    volumes:
+      - ppg_prov_db_data:/var/lib/postgresql/data
+
+  srv:
+    networks:
+      - internal
+    restart: always
+    build: .
+    ports:
+      - "3000:3000"
+    environment:
+      CONFIG_PATH: "./config/"
+    volumes:
+      - ./:/home/app
+
+volumes:
+  ppg_prov_db_data:
+
+networks:
+  internal:
+    driver: 'bridge'
