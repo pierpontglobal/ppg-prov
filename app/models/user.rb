@@ -1,6 +1,6 @@
 class User < ApplicationRecord
 
-  VALID_USERNAME_REGEX = /^(?=.{4,20}$)(?![_.])(?!.*[_.]{2})[a-zA-Z0-9._]+(?<![_.])$/
+  VALID_USERNAME_REGEX = /\A(?=.{4,20}$)(?![_.])(?!.*[_.]{2})[a-zA-Z0-9._]+(?<![_.])\z/
 
   has_secure_password
   validates :email, presence: true, uniqueness: true
