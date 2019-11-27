@@ -14,7 +14,8 @@ RUN apk add --no-cache \
     # clean up after installation
     && rm -rf /var/cache/apk/*
 
-ENV GEM_HOME="/usr/local/bundle"
+ENV BUNDLER_VERSION=2.0.2
+ENV GEM_HOME=/usr/local/bundle
 ENV PATH $GEM_HOME/bin:$GEM_HOME/gems/bin:$PATH
 ENV APP_HOME /home/app
 
@@ -23,11 +24,12 @@ COPY . $APP_HOME
 WORKDIR $APP_HOME
 
 RUN gem install bundler
-RUN bundle _2.0.2_ install \
+RUN bundle _${BUNDLER_VERSION}_ install \
+  --path ${GEM_HOME} \
   --deployment \
   --frozen \
   --jobs 4 \
-  --retry 2
+  --retry 2 && bundle _${BUNDLER_VERSION}_ check
 
 EXPOSE 3000
 CMD ./bin/start.sh

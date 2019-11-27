@@ -79,20 +79,6 @@ Rails.application.configure do
     config.logger    = ActiveSupport::TaggedLogging.new(logger)
   end
 
-  Thread.new do
-    app_name = 'ppg-prov'
-
-    config.semantic_logger.add_appender(
-        appender: :elasticsearch,
-        url: ENV['ES_URL'],
-        index: app_name
-    )
-    config.log_tags = {
-        ip: :remote_ip
-    }
-    config.semantic_logger.application = app_name
-  end
-
   # Do not dump schema after migrations.
   config.active_record.dump_schema_after_migration = false
 
