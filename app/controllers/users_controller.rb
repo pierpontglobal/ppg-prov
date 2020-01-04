@@ -1,23 +1,30 @@
+# frozen_string_literal: true
+
+# Handles users actions
 class UsersController < ApplicationController
   before_action :authorize_request, except: :create
-  before_action :find_user, except: %i[create index]
+  before_action :find_user, except: %i[create index self]
+
+  def self
+    render json: @current_user.sanitized_info, status: :ok
+  end
 
   # GET /users
   def index
-    @users = User.all
+    @users = User.all.map(&:sanitized_info)
     render json: @users, status: :ok
   end
 
   # GET /users/{username}
   def show
-    render json: @user, status: :ok
+    render json: @user.sanitized_info, status: :ok
   end
 
   # POST /users
   def create
     @user = User.new(user_params)
     if @user.save
-      render json: @user, status: :created
+      render json: @user.sanitized_info, status: :created
     else
       render json: { errors: @user.errors.full_messages },
              status: :unprocessable_entity

@@ -8,6 +8,7 @@ gem 'bcrypt'
 gem 'figaro'
 gem 'jwt'
 gem 'elasticsearch'
+gem 'rack-cors'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 6.0.0'

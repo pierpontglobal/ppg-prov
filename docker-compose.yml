@@ -15,12 +15,18 @@ services:
   srv:
     networks:
       - internal
+    environment:
+      DB_USERNAME: 'postgres'
+      DB_PASSWORD: 'qusUt1i9obru4ISTUG2f'
+      DB_HOST: 'db'
     restart: always
     build: .
     ports:
       - "3000:3000"
     volumes:
-      - ./:/home/app
+      - ./app:/home/app/app
+      - ./db:/home/app/db
+      - ./config/routes.rb:/home/app/config/routes.rb
 
 volumes:
   ppg_prov_db_data:

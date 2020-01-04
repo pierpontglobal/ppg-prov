@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_10_17_174125) do
+ActiveRecord::Schema.define(version: 2019_12_08_223319) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -26,6 +26,22 @@ ActiveRecord::Schema.define(version: 2019_10_17_174125) do
     t.bigint "user_id", null: false
     t.bigint "application_id", null: false
     t.index ["user_id", "application_id"], name: "index_applications_users_on_user_id_and_application_id"
+  end
+
+  create_table "apps", force: :cascade do |t|
+    t.string "title"
+    t.string "logo"
+    t.string "location"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.string "description"
+  end
+
+  create_table "apps_users", id: false, force: :cascade do |t|
+    t.bigint "app_id", null: false
+    t.bigint "user_id", null: false
+    t.index ["app_id"], name: "index_apps_users_on_app_id"
+    t.index ["user_id"], name: "index_apps_users_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
