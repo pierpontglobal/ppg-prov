@@ -27,6 +27,7 @@ services:
       - ./app:/home/app/app
       - ./db:/home/app/db
       - ./config/routes.rb:/home/app/config/routes.rb
+      - ./config/initializers:/home/app/config/initializers
 
 volumes:
   ppg_prov_db_data:

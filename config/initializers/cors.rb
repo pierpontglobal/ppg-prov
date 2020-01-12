@@ -11,7 +11,8 @@ Rails.application.config.middleware.insert_before 0, Rack::Cors do
             'investors.pierpontglobal.com',
             'pierpontglobal.com',
             'ppg-prov-frontend.herokuapp.com',
-            'localhost',
+            'localhost:8000',
+            'localhost:8001',
             '*.herokuapp.com'
     resource '*',
              headers: :any,
