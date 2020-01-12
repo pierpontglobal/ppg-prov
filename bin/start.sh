@@ -1,5 +1,5 @@
-bundle exec rails db:create
-bundle exec rails db:migrate
-bundle exec rails db:seed
+bundle exec bin/rails db:create
+bundle exec bin/rails db:migrate
+bundle exec bin/rails db:seed
 rm /home/app/tmp/pids/server.pid
-bundle exec rails server -b 0.0.0.0
+bundle exec bin/rails server -p ${PORT} -e ${RAILS_ENV}
