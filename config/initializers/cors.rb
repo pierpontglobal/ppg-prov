@@ -7,7 +7,12 @@
 
 Rails.application.config.middleware.insert_before 0, Rack::Cors do
   allow do
-    origins '0.0.0.0:8000', 'investors.pierpontglobal.com', 'pierpontglobal.com', 'ppg-prov-frontend.herokuapp.com'
+    origins '0.0.0.0',
+            'investors.pierpontglobal.com',
+            'pierpontglobal.com',
+            'ppg-prov-frontend.herokuapp.com',
+            'localhost',
+            '*.herokuapp.com'
     resource '*',
              headers: :any,
              methods: %i[get post put patch delete options head],
