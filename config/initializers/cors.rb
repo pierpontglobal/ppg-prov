@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # Be sure to restart your server when you modify this file.
 
 # Avoid CORS issues when API is called from the frontend app.
@@ -7,17 +9,11 @@
 
 Rails.application.config.middleware.insert_before 0, Rack::Cors do
   allow do
-    origins '0.0.0.0',
-            'investors.pierpontglobal.com',
-            'pierpontglobal.com',
-            'ppg-prov-frontend.herokuapp.com',
-            'localhost:8000',
-            'localhost:8001',
-            '*.herokuapp.com'
+    origins %w[http://localhost:8001 https://ppg-investors.herokuapp.com http://0.0.0.0:8001]
     resource '*',
              headers: :any,
              methods: %i[get post put patch delete options head],
              credentials: true,
-             expose: %w(Authorization Set-Cookie)
+             expose: %w[Authorization Set-Cookie]
   end
 end
