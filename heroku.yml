@@ -2,4 +2,4 @@ build:
   docker:
     web: Dockerfile
 run:
-  web: ./bin/start.sh
+  web: bin/rails server -p ${PORT} -e ${RAILS_ENV}
